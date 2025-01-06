@@ -1,0 +1,9 @@
+/* Fesilities.css */
+#scrollbar {
+    scrollbar-width: none; /* For Firefox */
+  }
+  
+  #scrollbar::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Opera */
+  }
+  

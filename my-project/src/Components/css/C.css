@@ -1,0 +1,6 @@
+@media (max-width: 640px) {
+    .table-responsive td {
+      display: block;
+      width: 100%;
+    }
+  }
