@@ -4,9 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev:client": "vite",
-    "dev": "npx concurrently \"npm run dev:client\" \" nodemon server.js\"",
-    "build": "vite build",
+    "dev": "vite",
+     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
