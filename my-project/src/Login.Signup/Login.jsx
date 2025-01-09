@@ -30,7 +30,7 @@ function Login() {
     setLoading(true);
     setErrors({});
     try {
-      const response = await fetch("http://localhost:3003/api/login", {
+      const response = await fetch("http://16.170.206.64/api/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: formData.email, password: formData.password }),
