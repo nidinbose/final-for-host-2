@@ -64,7 +64,7 @@ function Signup() {
     }
 
     try {
-      const response = await axios.post('http://localhost:3003/api/user', formData);
+      const response = await axios.post('http://16.170.206.64/api/user', formData);
       alert('Signup successful!');
       navigate('/login');  
     } catch (error) {
