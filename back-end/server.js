@@ -8,11 +8,20 @@ env.config();
 const app = express();
 
 app.use(cors());
+app.use(
+    helmet.contentSecurityPolicy({
+        directives: {
+            defaultSrc: ["'self'"],
+            styleSrc: ["'self'", "'unsafe-inline'"],
+        },
+    })
+);
 
 app.use(express.json({ limit: "500mb" })); 
 
 app.use('/api', router);
 app.use(express.static("../my-project/dist/"));
+
 connection().then(() => {
     app.listen(process.env.PORT, () => {
         console.log(`http://localhost:${process.env.PORT}`);
