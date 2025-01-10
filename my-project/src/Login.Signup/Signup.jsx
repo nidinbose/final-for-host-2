@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; 
 import logoImage from '/images/a.avif';
+import Ips from '../Components/IPs.js';
 
 function Signup() {
   const [formData, setFormData] = useState({
@@ -64,7 +65,8 @@ function Signup() {
     }
 
     try {
-      const response = await axios.post('http://16.170.206.64/api/user', formData);
+      const ip=Ips();
+      const response = await axios.post(`${ip}/api/user`, formData);
       alert('Signup successful!');
       navigate('/login');  
     } catch (error) {
