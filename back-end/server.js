@@ -4,18 +4,11 @@ import env from 'dotenv';
 import router from './router.js';
 import cors from 'cors';
 
+
 env.config();
 const app = express();
 
 app.use(cors());
-app.use(
-    helmet.contentSecurityPolicy({
-        directives: {
-            defaultSrc: ["'self'"],
-            styleSrc: ["'self'", "'unsafe-inline'"],
-        },
-    })
-);
 
 app.use(express.json({ limit: "500mb" })); 
 
