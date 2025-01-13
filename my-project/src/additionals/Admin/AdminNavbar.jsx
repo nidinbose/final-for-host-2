@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate ,Link} from 'react-router-dom';
 import axios from 'axios';
+import Ip from '../../API.js';
 
 export const AdminNavbar = () => {
     const [user, setUser] = useState(null);
@@ -12,7 +13,8 @@ export const AdminNavbar = () => {
             const token = localStorage.getItem('token');
             if (token) {
                 try {
-                    const response = await axios.get("http://localhost:3003/api/home", {
+                    const ip=Ip();
+                    const response = await axios.get(`${ip}home`, {
                         headers: { Authorization: `Bearer ${token}` }
                     });
                     const { username, photo, role } = response.data.user;

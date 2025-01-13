@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Ip from '../../API.js';
 
 const Enquiries = () => {
   const [enquiries, setEnquiries] = useState([]);
@@ -8,7 +9,8 @@ const Enquiries = () => {
 
   const fetchEnquiries = async () => {
     try {
-      const response = await axios.get('http://localhost:3003/api/getcontactslist'); 
+      const ip=Ip();
+      const response = await axios.get(`${ip}getcontactslist`); 
       setEnquiries(response.data); 
     } catch (err) {
       console.error(err);
@@ -20,7 +22,8 @@ const Enquiries = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:3003/api/deletecontact/${id}`);
+      const ip=Ip();
+      await axios.delete(`${ip}deletecontact/${id}`);
       setEnquiries((prev) => prev.filter((enquiry) => enquiry._id !== id)); 
       alert('Enquiry deleted successfully.');
     } catch (err) {

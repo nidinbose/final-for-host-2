@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import NavLR from '../../Navlist/NavLR';
+import Ip from '../../API.js';
 
 const Marklist = () => {
   const [markData, setMarkData] = useState([]);
@@ -14,7 +15,8 @@ const Marklist = () => {
     setError(null);
 
     try {
-      const response = await axios.get('http://localhost:3003/api/getmarklist');
+      const ip=Ip();
+      const response = await axios.get(`${ip}getmarklist`);
       setMarkData(response.data);
     } catch (err) {
       setError("Error fetching marklist data.");

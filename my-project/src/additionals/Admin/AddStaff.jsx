@@ -2,6 +2,7 @@
   import { useNavigate } from 'react-router-dom';
   import axios from 'axios';
 import AdminFooter from "./AdminFooter";
+import Ip from "../../API.js";
 
   const AddStaff = () => {
     const navigate = useNavigate();
@@ -74,7 +75,8 @@ import AdminFooter from "./AdminFooter";
       }
 
       try {
-        const res = await axios.post("http://localhost:3003/api/addstaff", formData);
+        const ip=Ip();
+        const res = await axios.post(`${ip}addstaff`, formData);
         if (res.status === 200) {
           navigate('/admin');
         }

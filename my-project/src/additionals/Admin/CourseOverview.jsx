@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Ip from '../../API.js';
 
 const CourseOverview = () => {
   const { id } = useParams();
@@ -21,8 +22,9 @@ const CourseOverview = () => {
   useEffect(() => {
     const fetchCourseData = async () => {
       try {
+        const ip=Ip();
         setLoading(true);
-        const response = await axios.get(`http://localhost:3003/api/getcourseid/${id}`);
+        const response = await axios.get(`${ip}getcourseid/${id}`);
         if (response.data) {
           setCourseData(response.data);
         } else {
@@ -52,7 +54,8 @@ const CourseOverview = () => {
     toast.info('Submitting your message...', { autoClose: 1500 });
 
     try {
-      const response = await axios.post('http://localhost:3003/api/contactn', formData);
+      const ip=Ip();
+      const response = await axios.post(`${ip}contactn`, formData);
       if (response.status === 200) {
         toast.success('Your message has been sent successfully!', { autoClose: 3000 });
         setFormData({

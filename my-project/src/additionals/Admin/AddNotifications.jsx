@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Ip from "../../API.js";
 
 const AddNotifications = () => {
   const [formData, setFormData] = useState({
@@ -23,7 +24,8 @@ const AddNotifications = () => {
   const fetchNotifications = async () => {
     try {
       setLoading(true);
-      const response = await axios.get("http://localhost:3003/api/getnotification");
+      const ip=Ip();
+      const response = await axios.get(`${ip}getnotification`);
       setNotifications(response.data);
       setLoading(false);
     } catch (error) {
@@ -40,8 +42,9 @@ const AddNotifications = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const ip=Ip();
       const response = await axios.post(
-        "http://localhost:3003/api/notify",
+        `${ip}notify`,
         formData
       );
       alert("Notification added successfully!");
@@ -61,7 +64,8 @@ const AddNotifications = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:3003/api/deletenotify/${id}`);
+      const ip=Ip();
+      await axios.delete(`${ip}deletenotify/${id}`);
       alert("Notification deleted successfully!");
       setNotifications(notifications.filter((item) => item._id !== id));
     } catch (error) {

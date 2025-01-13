@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import NavLR from "../../Navlist/NavLR";
+import Ip from "../../API.js";
 
 const AddAdmin = () => {
   const [formData, setFormData] = useState({
@@ -39,7 +40,8 @@ const AddAdmin = () => {
     setErrors({});
 
     try {
-      const response = await fetch("http://localhost:3003/api/admins", {
+      const ip=Ip();
+      const response = await fetch(`${ip}admins`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

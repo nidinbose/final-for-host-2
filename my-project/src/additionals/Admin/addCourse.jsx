@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import NavLR from "../../Navlist/NavLR";
+import Ip from "../../API.js";
 
 const AddCourse = () => {
   const [data, setData] = useState({
@@ -35,7 +36,8 @@ const AddCourse = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:3003/api/addcourse", data);
+      const ip=Ip();
+      const res = await axios.post(`${ip}addcourse`, data);
       console.log("Course added:", res.data);
       window.alert("Course added successfully!");
     } catch (error) {

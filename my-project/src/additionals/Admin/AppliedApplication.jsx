@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Ip from '../../API.js';
 
 const AppliedApplication = () => {
   const [applications, setApplications] = useState([]);
@@ -8,7 +9,8 @@ const AppliedApplication = () => {
 
   const fetchApplicationData = async () => {
     try {
-      const response = await axios.get('http://localhost:3003/api/getapplied');
+      const ip=Ip();
+      const response = await axios.get(`${ip}getapplied`);
       setApplications(response.data); 
     } catch (err) {
       console.error(err);
@@ -24,7 +26,8 @@ const AppliedApplication = () => {
 
   const handleApprove = async (application) => {
     try {
-      await axios.post('http://localhost:3003/api/send-approveemail', {
+      const ip=Ip();
+      await axios.post(`${ip}send-approveemail`, {
         email: application.email,
         name: `${application.firstName} ${application.lastName}`,
       });
@@ -37,12 +40,13 @@ const AppliedApplication = () => {
 
   const handleReject = async (application) => {
     try {
-        await axios.post('http://localhost:3003/api/send-rejection-email', {
+      const ip=Ip();
+        await axios.post(`${ip}send-rejection-email`, {
         email: application.email,
         name: `${application.firstName} ${application.lastName}`,
       });
 
-         await axios.delete(`http://localhost:3003/api/deleteapply/${application._id}`);
+         await axios.delete(`${ip}deleteapply/${application._id}`);
 
       setApplications((prevApplications) =>
         prevApplications.filter((app) => app._id !== application._id)

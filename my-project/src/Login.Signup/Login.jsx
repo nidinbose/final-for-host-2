@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Ips from "../Components/IPs.js";
 
+import Ip from "../API.js";
 function Login() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ email: "", password: "", role: "student" });
@@ -31,8 +31,8 @@ function Login() {
     setLoading(true);
     setErrors({});
     try {
-      const ip=Ips();
-      const response = await fetch(`${ip}/api/login`, {
+      const ip=Ip();
+      const response = await fetch(`${ip}/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: formData.email, password: formData.password }),

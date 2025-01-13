@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Ip from "../../API.js";
 
 const AddStudents = () => {
   const navigate = useNavigate();
@@ -72,7 +73,8 @@ const AddStudents = () => {
     if (!validateForm()) return;
 
     try {
-      const res = await axios.post("http://localhost:3003/api/addstudents", formData);
+      const ip=Ip();
+      const res = await axios.post(`${ip}addstudents`, formData);
       if (res.status === 200) {
         navigate("/admin");
       }
@@ -86,8 +88,7 @@ const AddStudents = () => {
       <h1 className="text-center text-4xl font-semibold text-[#A0CE4E]">Add Student Data</h1>
       <section className="container px-5 py-24 mx-auto">
         <div className="lg:w-4/5 mx-auto flex flex-wrap">
-          {/* Image Preview */}
-          <div className="lg:w-1/2 w-full mb-6 lg:mb-0">
+                   <div className="lg:w-1/2 w-full mb-6 lg:mb-0">
             <img
               alt="Student Preview"
               className="w-full h-82 object-cover object-center rounded border border-[#A0CE4E]"
@@ -101,8 +102,7 @@ const AddStudents = () => {
             />
             {errors.photo && <p className="text-red-500">{errors.photo}</p>}
           </div>
-          {/* Form Section */}
-          <div className="lg:w-1/2 w-full lg:pl-10 space-y-4">
+                  <div className="lg:w-1/2 w-full lg:pl-10 space-y-4">
             {["name", "studentid", "Class", "bloodType", "email"].map((field) => (
               <div key={field}>
                 <h2 className="text-sm font-semibold text-[#A0CE4E] tracking-widest">
@@ -119,8 +119,7 @@ const AddStudents = () => {
                 {errors[field] && <p className="text-red-500 text-xs">{errors[field]}</p>}
               </div>
             ))}
-            {/* Dropdown Fields */}
-            {["department", "semester"].map((field) => (
+                      {["department", "semester"].map((field) => (
               <div key={field}>
                 <h2 className="text-sm font-semibold text-[#A0CE4E] tracking-widest">
                   {field.charAt(0).toUpperCase() + field.slice(1)}
@@ -146,8 +145,7 @@ const AddStudents = () => {
                 {errors[field] && <p className="text-red-500 text-xs">{errors[field]}</p>}
               </div>
             ))}
-            {/* Date Input */}
-            <h2 className="text-sm font-semibold text-[#A0CE4E] tracking-widest">Date of Birth</h2>
+                      <h2 className="text-sm font-semibold text-[#A0CE4E] tracking-widest">Date of Birth</h2>
             <input
               type="date"
               name="dateOfBirth"
@@ -156,8 +154,7 @@ const AddStudents = () => {
               className="w-full p-3 border border-[#A0CE4E] rounded-md text-gray-800"
             />
             {errors.dateOfBirth && <p className="text-red-500 text-xs">{errors.dateOfBirth}</p>}
-            {/* Buttons */}
-            <div className="flex justify-between gap-4 mt-8">
+                       <div className="flex justify-between gap-4 mt-8">
               <button
                 onClick={handleSubmit}
                 className="px-6 py-3 bg-green-500 text-white rounded-lg"
