@@ -1,5 +1,5 @@
 const Ip = () => {
-    return "http://localhost:3003/api/";
+    return "http://54.81.233.118/api/";
 };
 
 export default Ip; 
