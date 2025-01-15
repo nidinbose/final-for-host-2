@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import {Link} from 'react-router-dom'
+import Ip from "../../API.js";
 
 
 const StudentViewSD = () => {
@@ -10,7 +11,8 @@ const StudentViewSD = () => {
 
   const getStudents = async () => {
     try {
-      const res = await axios.get("http://localhost:3003/api/getstudent");
+      const ip=Ip();
+      const res = await axios.get(`${ip}getstudent`);
       setStudents(res.data);
     } catch (error) {
       console.error("Error fetching student data:", error);

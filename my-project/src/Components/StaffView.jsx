@@ -4,6 +4,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import AdminFooter from "../additionals/Admin/AdminFooter";
 import AdminNavbar from "../additionals/Admin/AdminNavbar";
+import Ip from "../API.js";
 
 const StaffView = () => {
   const [staff, setStaff] = useState([]);
@@ -13,7 +14,8 @@ const StaffView = () => {
 
   const getStaff = async () => {
     try {
-      const res = await axios.get("http://localhost:3003/api/getstaff");
+      const ip=Ip();
+      const res = await axios.get(`${ip}getstaff`);
       setStaff(res.data);
 
            const uniqueDepartments = [
@@ -42,8 +44,7 @@ const StaffView = () => {
     <section className="bg-[#1B2C39] py-[10vh] px-12 min-h-screen">
 
       <h1 className="text-center text-4xl font-semibold text-[#A0CE4E]">Staff Lists</h1>
-      {/* Filter Inputs */}
-      <div className="flex flex-col sm:flex-row sm:justify-between mb-6 gap-4">
+         <div className="flex flex-col sm:flex-row sm:justify-between mb-6 gap-4">
         <input
           type="text"
           placeholder="Search by name"

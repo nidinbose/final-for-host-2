@@ -20,7 +20,7 @@ const Site = () => {
     return (
         <div>
             
-            <Sidebar/>
+            {/* <Sidebar/> */}
             <Start />
            
             <Courses />

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Ip from "../../API.js";
 
 const ViewStudentt = () => {
   const { id } = useParams();
@@ -11,7 +12,8 @@ const ViewStudentt = () => {
 
   const getData = async () => {
     try {
-      const res = await axios.get(`http://localhost:3003/api/getstudentedit/${id}`);
+      const ip=Ip();
+      const res = await axios.get(`${ip}getstudentedit/${id}`);
       setData(res.data);
     } catch (error) {
       console.error("Error fetching student data:", error);
@@ -35,7 +37,8 @@ const ViewStudentt = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:3003/api/deletestudent/${id}`);
+      const ip=Ip();
+      await axios.delete(`${ip}deletestudent/${id}`);
       navigate('/vstudent'); 
     } catch (error) {
       console.error("Error deleting student:", error);

@@ -12,6 +12,7 @@ const nav = [
     { name: "Courses", path: '/courses' },
     { name: "Admissions", path: '/admissions' },
 ];
+import Ip from "../API.js";
 
 const Navbar = () => {
     const [toggle, setToggle] = useState(false);
@@ -29,7 +30,8 @@ const Navbar = () => {
             const token = localStorage.getItem('token');
             if (token) {
                 try {
-                    const response = await axios.get("http://localhost:3003/api/home", {
+                  const ip=Ip();
+                    const response = await axios.get(`${ip}home`, {
                         headers: { Authorization: `Bearer ${token}` }
                     });
                     const { username, photo, role } = response.data.user;

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Ip from '../../API.js';
 
 function AddMarksForm() {
  
@@ -47,7 +48,8 @@ function AddMarksForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3003/api/addmarks', formData);
+      const ip=Ip();
+      const response = await axios.post(`${ip}addmarks`, formData);
       setResponseMessage(response.data.message);
     } catch (error) {
       setResponseMessage(

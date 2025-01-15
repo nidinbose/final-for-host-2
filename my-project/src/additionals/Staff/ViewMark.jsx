@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Ip from "../../API.js";
 
 const ViewMark = () => {
   const { id } = useParams();
@@ -12,7 +13,8 @@ const ViewMark = () => {
 
   const getData = async () => {
     try {
-      const res = await axios.get(`http://localhost:3003/api/getmark/${id}`);
+      const ip=Ip();
+      const res = await axios.get(`${ip}getmark/${id}`);
       setData(res.data);
     } catch (error) {
       console.error("Error fetching mark data:", error);
@@ -36,7 +38,8 @@ const ViewMark = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:3003/api/deletemark/${id}`);
+      const ip=Ip();
+      await axios.delete(`${ip}deletemark/${id}`);
       alert("Marks deleted successfully");
       navigate('/marks');
     } catch (error) {

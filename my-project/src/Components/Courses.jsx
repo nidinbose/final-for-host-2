@@ -6,18 +6,18 @@ import '../Components/css/Courses.css';
 import Ip from '../API.js';
 
 const Corses = () => {
-  const [cards, setCards] = useState([]); // Ensure cards is initialized as an array
-  const [loading, setLoading] = useState(true); // Add loading state
-  const [error, setError] = useState(null); // Add error state
+  const [cards, setCards] = useState([]); 
+  const [loading, setLoading] = useState(true); 
+  const [error, setError] = useState(null); 
 
   useEffect(() => {
     const fetchCourses = async () => {
       try {
         const ip = Ip();
         const response = await axios.get(`${ip}getcourse`);
-        console.log("Fetched courses data:", response.data); // Log to debug data
+        console.log("Fetched courses data:", response.data); 
         if (Array.isArray(response.data)) {
-          setCards(response.data); // Only set cards if data is an array
+          setCards(response.data);
         } else {
           throw new Error("Data format incorrect: Expected an array");
         }
@@ -25,7 +25,7 @@ const Corses = () => {
         console.error("Error fetching courses:", err);
         setError("Failed to fetch courses. Please try again later.");
       } finally {
-        setLoading(false); // End loading regardless of success or error
+        setLoading(false); 
       }
     };
 

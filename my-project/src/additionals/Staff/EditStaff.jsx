@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import AdminNavbar from "../Admin/AdminNavbar";
 import AdminFooter from "../Admin/AdminFooter";
+import Ip from "../../API.js";
 
 const EditStaff = () => {
     const { id } = useParams();
@@ -16,14 +17,16 @@ const EditStaff = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const res = await axios.patch(`http://localhost:3003/api/updatestaff/${id}`, data);
+        const ip=Ip();
+        const res = await axios.patch(`${ip}updatestaff/${id}`, data);
         if (res.status === 201) {
             navigate('/vstaff');
         }
     };
 
     const getUser = async () => {
-        const res = await axios.get(`http://localhost:3003/api/getstaffedit/${id}`);
+        const ip=Ip();
+        const res = await axios.get(`${ip}getstaffedit/${id}`);
         setData(res.data);
     };
 

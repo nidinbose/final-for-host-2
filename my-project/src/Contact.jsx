@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Ip from "./API.js";
 
 const Contact = () => {
 const [data,setData]=useState({
@@ -16,8 +17,9 @@ const handleChange=(e)=>{
 const add=async(e)=>{
     e.preventDefault();
     try {
+      const ip=Ip();
        console.log(res.data);
-       const response=await axios.post("htpp://localhost:3003/api/contactn",data)
+       const response=await axios.post(`${ip}contactn`,data)
         console.log(response.data);
         window.alert("Successfully submitted application contact you soon")
         

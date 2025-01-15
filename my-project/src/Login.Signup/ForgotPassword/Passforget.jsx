@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Typography, Input, Button } from "@material-tailwind/react";
 import axios from "axios";
+import Ip from "../../API.js";
 
 const ResetPassword = () => {
   const [formData, setFormData] = useState({ email: "", otp: "", newPassword: "" });
@@ -48,7 +49,8 @@ const ResetPassword = () => {
     setSuccessMessage("");
 
     try {
-      const response = await axios.post("http://localhost:3003/api/resetpassword", {
+      const ip=Ip();
+      const response = await axios.post(`${ip}resetpassword`, {
         email: formData.email,
         otp: formData.otp,
         newPassword: formData.newPassword,

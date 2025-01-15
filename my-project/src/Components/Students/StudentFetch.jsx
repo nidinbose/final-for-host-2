@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import Ip from '../../API.js';
 
 const FetchStudent = () => {
     const { studentId } = useParams(); 
@@ -11,7 +12,8 @@ const FetchStudent = () => {
     useEffect(() => {
         async function fetchStudent() {
             try {
-                const response = await axios.get(`/api/student/${studentId}`);
+                const ip=Ip();
+                const response = await axios.get(`${ip}student/${studentId}`);
                 setStudent(response.data);
                 setLoading(false);
             } catch (error) {

@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import AdminNavbar from "../Admin/AdminNavbar";
 import AdminFooter from "../Admin/AdminFooter";
+import Ip from "../../API.js";
 
 const ViewStaff = () => {
   const { id } = useParams();
@@ -12,7 +13,8 @@ const ViewStaff = () => {
 
   const getData = async () => {
     try {
-      const res = await axios.get(`http://localhost:3003/api/getstaffedit/${id}`);
+      const ip=Ip();
+      const res = await axios.get(`${ip}getstaffedit/${id}`);
       setData(res.data);
     } catch (error) {
       console.error("Error fetching staff data:", error);
@@ -36,7 +38,8 @@ const ViewStaff = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:3003/api/deletestaff/${id}`);
+      const ip=Ip();
+      await axios.delete(`${ip}deletestaff/${id}`);
       navigate('/vstaff');
     } catch (error) {
       console.error("Error deleting staff:", error);

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Typography, Input, Button } from "@material-tailwind/react";
 import axios from "axios";
+import Ip from "../../API.js";
 
 const RequestOtp = () => {
   const [formData, setFormData] = useState({ email: "" });
@@ -38,7 +39,8 @@ const RequestOtp = () => {
     setSuccessMessage("");
 
     try {
-      const response = await axios.post("http://localhost:3003/api/fpwd", {
+      const ip=Ip();
+      const response = await axios.post(`${ip}fpwd`, {
         email: formData.email,
       });
 

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import axios from "axios"; 
+import Ip from "../../API.js";
 
 const Addss = () => {
   const navigate = useNavigate();
@@ -16,7 +17,8 @@ const Addss = () => {
   useEffect(() => {
     const fetchStudentCount = async () => {
       try {
-        const response = await axios.get("http://localhost:3003/api/studentscount"); 
+        const ip=Ip();
+        const response = await axios.get(`${ip}studentscount`); 
         setStudentCount(response.data.count);
       } catch (error) {
         console.error("Error fetching student count:", error);
@@ -25,7 +27,8 @@ const Addss = () => {
 
     const fetchStaffCount = async () => {
       try {
-        const response = await axios.get("http://localhost:3003/api/staffcount"); 
+        const ip=Ip();
+        const response = await axios.get(`${ip}staffcount`); 
         setStaffCount(response.data.count);
       } catch (error) {
         console.error("Error fetching student count:", error);
@@ -34,7 +37,8 @@ const Addss = () => {
 
     const fetchUserCount = async () => {
       try {
-        const response = await axios.get("http://localhost:3003/api/usercount"); 
+        const ip=Ip();
+        const response = await axios.get(`${ip}usercount`); 
         setUserCount(response.data.count);
       } catch (error) {
         console.error("Error fetching student count:", error);

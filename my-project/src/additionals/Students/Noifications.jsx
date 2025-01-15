@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Ip from '../../API.js';
 
 const Notifications = () => {
   const [notifications, setNotifications] = useState([]);
@@ -9,7 +10,8 @@ const Notifications = () => {
   useEffect(() => {
       const fetchNotifications = async () => {
       try {
-        const response = await axios.get('http://localhost:3003/api/getnotification');
+        const ip=Ip();
+        const response = await axios.get(`${ip}getnotification`);
         setNotifications(response.data);
         setLoading(false);
       } catch (err) {

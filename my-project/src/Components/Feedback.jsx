@@ -10,7 +10,7 @@ const Feedback = () => {
   ]
 
   return (
-    <div className="xl:p-10 relative h-full absolute inset-0 bg-[url('https://img.freepik.com/premium-photo/school-principal-office-room-professional-advertising-photography-ai-generated_925376-3513.jpg')] bg-cover bg-center ">
+    <div className="xl:p-10 z-50 relative h-full absolute inset-0 bg-[url('https://img.freepik.com/premium-photo/school-principal-office-room-professional-advertising-photography-ai-generated_925376-3513.jpg')] bg-cover bg-center ">
       <div className="absolute inset-0 bg-white opacity-70"></div>
     
         <div className='z-50 relative'>

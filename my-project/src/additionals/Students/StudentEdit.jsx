@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
+import Ip from "../../API.js";
 
 const StudentsEdit = () => {
     const { id } = useParams();
@@ -14,7 +15,8 @@ const StudentsEdit = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const res = await axios.patch(`http://localhost:3003/api/updatestudent/${id}`, data);
+        const ip=Ip();
+        const res = await axios.patch(`${ip}updatestudent/${id}`, data);
         if (res.status === 201) {
             navigate('/vstudent');
         }
@@ -29,7 +31,8 @@ const StudentsEdit = () => {
     }, [navigate]);
 
     const getUser = async () => {
-        const res = await axios.get(`http://localhost:3003/api/getstudentedit/${id}`);
+        const ip=Ip();
+        const res = await axios.get(`${ip}getstudentedit/${id}`);
         setData(res.data);
     };
 

@@ -16,6 +16,7 @@ import { BiSolidBookAdd } from "react-icons/bi";
 import { AiFillMessage } from "react-icons/ai";
 import { IoMdNotifications } from "react-icons/io";
 import { FaUsersCog } from "react-icons/fa";
+import Ip from "../API.js";
 
 const Admin = () => {
   const navigate = useNavigate();
@@ -37,8 +38,9 @@ const Admin = () => {
       alert("Please log in to continue.");
       navigate("/login");
     } else {
+      const ip=Ip();
       axios
-        .get("http://localhost:3003/api/home", {
+        .get(`${ip}home`, {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((response) => {
@@ -61,13 +63,14 @@ const Admin = () => {
 
     const fetchCounts = async () => {
       try {
+        const ip=Ip();
         const [studentRes, staffRes, userRes,applyRes,notifyRes,contactRes] = await Promise.all([
-          axios.get("http://localhost:3003/api/studentscount"),
-          axios.get("http://localhost:3003/api/staffcount"),
-          axios.get("http://localhost:3003/api/usercount"),
-          axios.get("http://localhost:3003/api/applycount"),
-          axios.get("http://localhost:3003/api/notifycount"),
-          axios.get("http://localhost:3003/api/contactcount"),
+          axios.get(`${ip}studentscount`),
+          axios.get(`${ip}staffcount`),
+          axios.get(`${ip}usercount`),
+          axios.get(`${ip}applycount`),
+          axios.get(`${ip}notifycount`),
+          axios.get(`${ip}contactcount`),
         ]);
         setStudentCount(studentRes.data.count);
         setStaffCount(staffRes.data.count);
@@ -83,7 +86,8 @@ const Admin = () => {
 
     const fetchNotifications = async () => {
       try {
-        const response = await axios.get("http://localhost:3003/api/getnotification");
+        const ip=Ip();
+        const response = await axios.get(`${ip}getnotification`);
         setNotifications(response.data);
       } catch {
         console.error("Error fetching notifications.");

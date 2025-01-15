@@ -3,6 +3,7 @@ import axios from "axios";
 import {Link} from 'react-router-dom'
 import AdminFooter from "../additionals/Admin/AdminFooter";
 import AdminNavbar from "../additionals/Admin/AdminNavbar";
+import Ip from "../API.js";
 
 const StudentView = () => {
   const [students, setStudents] = useState([]);
@@ -11,7 +12,8 @@ const StudentView = () => {
 
     const getStudents = async () => {
     try {
-      const res = await axios.get("http://localhost:3003/api/getstudent");
+      const ip=Ip();
+      const res = await axios.get(`${ip}getstudent`);
       setStudents(res.data);
     } catch (error) {
       console.error("Error fetching student data:", error);

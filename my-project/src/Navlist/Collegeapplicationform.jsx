@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../Components/css/C.css'
+import Ip from '../API.js';
 
 const CollegeApplicationForm = () => {
   const [formData, setFormData] = useState({
@@ -34,7 +35,8 @@ const CollegeApplicationForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:3003/api//applynowf', formData);
+      const ip=Ip();
+      await axios.post(`${ip}applynowf`, formData);
       toast.success('Application submitted successfully!');
       
     } catch (error) {

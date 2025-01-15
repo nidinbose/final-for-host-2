@@ -5,6 +5,7 @@ import { IoLogoInstagram } from "react-icons/io5";
 import { BsTwitterX } from "react-icons/bs";
 import { FaFacebook } from "react-icons/fa";
 import { SiWhatsapp } from "react-icons/si";
+import Ip from '../API.js';
 
 const Footer = () => {
   const [email, setEmail] = useState('');
@@ -12,7 +13,8 @@ const Footer = () => {
   const handleSubscribe = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('https://your-backend-url/api/subscribe', { email });
+      const ip=Ip();
+      await axios.post(`${ip}subscribe`, { email });
       alert('Subscription successful!');
       setEmail('');
     } catch (error) {

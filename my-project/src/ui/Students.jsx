@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate ,Link} from 'react-router-dom';
+import Ip from '../API.js';
 
 const Students = () => {
   const [data, setData] = useState(null);
@@ -12,7 +13,8 @@ const Students = () => {
 
   const getData = async (username) => {
     try {
-      const res = await axios.get(`http://localhost:3003/api/getstudentone`, {
+      const ip=Ip();
+      const res = await axios.get(`${ip}getstudentone`, {
         params: { username },
       });
       setData(res.data);
@@ -27,7 +29,8 @@ const Students = () => {
 
   const fetchMarks = async (studentid) => {
     try {
-      const res = await axios.get(`http://localhost:3003/api/getmarkedit/${studentid}`);
+      const ip=Ip();
+      const res = await axios.get(`${ip}getmarkedit/${studentid}`);
       setMarks(res.data); 
     } catch (error) {
       console.error("Error fetching marks:", error);
@@ -41,7 +44,8 @@ const Students = () => {
       return navigate("/login");
     }
     try {
-      const res = await axios.get("http://localhost:3003/api/home", {
+      const ip=Ip();
+      const res = await axios.get(`${ip}home`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const { username, photo, role, email } = res.data.user;
